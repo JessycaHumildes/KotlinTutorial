@@ -1,3 +1,7 @@
+import android.os.Build
+import androidx.annotation.RequiresApi
+
+@RequiresApi(Build.VERSION_CODES.N)
 fun main(args: Array<String>) {
 
     val tim = Player("Tim")
@@ -39,7 +43,33 @@ fun main(args: Array<String>) {
     tim.Show()
 
     val redPotion = Loot("Red Potion", LootType.POTION, 7.5)
-    tim.inventory.add(redPotion)
+    tim.getLoot(redPotion)
+    val chestArmor = Loot("+3 Chest Armor", LootType.ARMOR, 80.0)
+    tim.getLoot(chestArmor)
     tim.showInventory()
-    println(tim)
+
+    tim.getLoot(Loot("Ring of Protection +2", LootType.RING, 40.25))
+    tim.getLoot(Loot("Invisibility Potion", LootType.POTION, 35.95))
+    tim.showInventory()
+
+    if (tim.dropLoot(redPotion)){
+        tim.showInventory()
+    }else{
+        println("You dont have ${redPotion.name}")
+    }
+
+    val bluePotion = Loot("Blue Potion", LootType.POTION, 6.00)
+    if (tim.dropLoot(bluePotion)){
+        tim.showInventory()
+    }else{
+        println("You dont have ${bluePotion.name}")
+    }
+    if (tim.dropLoot("Invisibility Potion")){
+        tim.showInventory()
+    }else{
+        println("You dont have an Invisibility Potion")
+    }
+
+
+
 }
