@@ -1,3 +1,5 @@
+import kotlin.random.Random
+
 class VampyreKing(name: String) : Vampyre(name) {
 
     init {
@@ -10,5 +12,14 @@ class VampyreKing(name: String) : Vampyre(name) {
 
     fun runAway(): Boolean{
         return lives< 2
+    }
+    fun dodges(): Boolean {
+        val rand = java.util.Random()
+        val chance = rand.nextInt(6)
+        if (chance>3){
+            println("Dracula Dodges")
+            return true
+        }
+        return false
     }
 }
